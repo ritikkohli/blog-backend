@@ -5,6 +5,7 @@ const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 
 app.use(cookieParser());
 app.use(cors())
@@ -18,6 +19,12 @@ mongoose.connect("mongodb+srv://ritikkohli:eJ9TDANLzfmCixVu@cluster0.gd4mqlp.mon
 .catch ( err => console.log(err) )
 
 app.use('/', route);
+
+app.use(express.static(path.join(__dirname,'../client/build')));
+
+app.get('*',function(req,res){
+    res.sendFile(path.join(__dirname,'../client/build/index.html'));
+});
 
 app.listen(process.env.PORT || 5000, function () {
     console.log('Express app running on port ' + (process.env.PORT || 5000))
