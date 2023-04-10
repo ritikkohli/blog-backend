@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const authorController= require("../Controller/authorController")
-const blogController= require("../Controller/blogController")
-const auth = require("../middleware/auth")
+const authorController= require("../Controller/authorController.js")
+const blogController= require("../Controller/blogController.js")
+const auth = require("../middleware/auth.js")
 
 router.post("/authors", authorController.createAuthor)
 router.post("/login", authorController.logIn)
